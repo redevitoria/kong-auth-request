@@ -14,7 +14,7 @@ function _M.execute(conf)
         local ok, err = client:ssl_handshake()
         if not ok then
             kong.log.err(err)
-            return kong.response.exit(500, { message = "An unexpected error occurred" })
+            return kong.response.exit(500, {message = "An unexpected error occurred"})
         end
     end
 
@@ -24,7 +24,7 @@ function _M.execute(conf)
 
     if not res then
         kong.log.err(err)
-        return kong.response.exit(500, { message = "An unexpected error occurred" })
+        return kong.response.exit(500, {message = "An unexpected error occurred"})
     end
 
     if res.status > 299 then
@@ -43,6 +43,16 @@ function _M.new_auth_request(origin_request_headers_to_forward_to_auth, keepaliv
         charset = "utf-8",
         ["content-type"] = "application/json"
     }
+    local method = kong.request.get_method()
+    local path = kong.request.get_path()
+
+    local body_data = {
+        method = method,
+        path = path
+    }
+
+    local body = cjson.encode(body_data)
+
     for _, name in ipairs(origin_request_headers_to_forward_to_auth) do
         local header_val = kong.request.get_header(name)
         if header_val then
@@ -50,9 +60,9 @@ function _M.new_auth_request(origin_request_headers_to_forward_to_auth, keepaliv
         end
     end
     return {
-        method = "GET",
+        method = "POST",
         headers = headers,
-        body = "",
+        body = body,
         keepalive_timeout = keepalive_timeout
     }
 end
