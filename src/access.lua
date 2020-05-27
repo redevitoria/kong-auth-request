@@ -43,6 +43,7 @@ function _M.new_auth_request(origin_request_headers_to_forward_to_auth, keepaliv
         charset = "utf-8",
         ["content-type"] = "application/json"
     }
+
     local method = kong.request.get_method()
     local path = kong.request.get_path()
 
