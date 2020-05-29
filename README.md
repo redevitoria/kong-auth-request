@@ -32,7 +32,7 @@ ENV KONG_CUSTOM_PLUGINS kong-auth-request
 
 Add kong-auth-request to the plugins in the Kong directory:
 
-```mv ~/kong-auth-request ~/Folha3/folha3-kong/plugins```
+```mv ~/kong-auth-request ~/kong/plugins```
 
 Execute build command to the Kong service:
 
