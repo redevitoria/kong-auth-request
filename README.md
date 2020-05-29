@@ -60,7 +60,7 @@ Auth-request will execute a JSON POST request to the specified url with the foll
 
 | Attribute |                            Description                            |
 | --------- | :---------------------------------------------------------------: |
-| method    |  The http method of the original request. Ex: GET, POST e etc...  |
+| method    |  The http method of the original request. Ex: GET, POST and etc...  |
 | path      | The url path of the original request. Ex: /service_id/resource/id |
 
 ## Author
